@@ -15,6 +15,8 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
+gem "sentry-ruby"
+gem "sentry-rails"
 
 # Slim
 gem "slim-rails"
