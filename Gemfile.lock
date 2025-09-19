@@ -105,6 +105,8 @@ GEM
     drb (2.2.3)
     erb (5.0.2)
     erubi (1.13.1)
+    faker (3.5.2)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -135,6 +137,9 @@ GEM
     matrix (0.4.3)
     mini_mime (1.1.5)
     minitest (5.25.5)
+    minitest-power_assert (0.3.1)
+      minitest
+      power_assert (>= 1.1)
     msgpack (1.8.0)
     net-imap (0.5.10)
       date
@@ -173,6 +178,7 @@ GEM
     pg (1.6.2-x86_64-darwin)
     pg (1.6.2-x86_64-linux)
     pg (1.6.2-x86_64-linux-musl)
+    power_assert (2.0.5)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -267,6 +273,23 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    sentry-rails (5.27.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.27.0)
+    sentry-ruby (5.27.0)
+      bigdecimal
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+    slim (5.2.1)
+      temple (~> 0.10.0)
+      tilt (>= 2.1.0)
+    slim-rails (3.7.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 6.0, != 5.0.0)
+    slim_lint (0.33.0)
+      rexml (~> 3.2)
+      rubocop (>= 1.0, < 2.0)
+      slim (>= 3.0, < 6.0)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -286,7 +309,9 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.7)
+    temple (0.10.4)
     thor (1.4.0)
+    tilt (2.6.1)
     timeout (0.4.3)
     turbo-rails (2.0.16)
       actionpack (>= 7.1.0)
@@ -329,13 +354,21 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  faker
   jbuilder
   jsbundling-rails
+  minitest-power_assert
   pg
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.2)
+  rubocop-rails
   rubocop-rails-omakase
   selenium-webdriver
+  sentry-rails
+  sentry-ruby
+  slim
+  slim-rails
+  slim_lint
   sprockets-rails
   sqlite3 (>= 1.4)
   stimulus-rails

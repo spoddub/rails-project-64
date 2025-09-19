@@ -1,4 +1,5 @@
 ENV["RAILS_ENV"] ||= "test"
+require "minitest/power_assert"
 require_relative "../config/environment"
 require "rails/test_help"
 
