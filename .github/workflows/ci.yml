@@ -10,8 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    services:
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,7 +20,7 @@ jobs:
           ruby-version: "3.2.2"
           bundler-cache: true
 
-      - name: Install Node (для jsbundling/cssbundling при необходимости)
+      - name: Set up Node (for jsbundling/cssbundling)
         uses: actions/setup-node@v4
         with:
           node-version: "20"
