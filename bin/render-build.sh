@@ -3,8 +3,11 @@ set -o errexit
 
 bundle install
 
-npm ci --include=dev || npm install
+if [ -f package-lock.json ]; then
+  npm ci
+else
+  npm install
+fi
 
 bundle exec rails assets:precompile
-
 bundle exec rails db:migrate

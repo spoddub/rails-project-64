@@ -1,7 +1,5 @@
 databases:
   - name: rails-project-64-db
-    databaseName: rails_project_64
-    user: rails_project_64
     plan: free
 
 services:
@@ -18,13 +16,9 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
-      - key: RAILS_ENV
-        value: "production"
       - key: BUNDLE_WITHOUT
         value: "development:test"
       - key: NPM_CONFIG_PRODUCTION
         value: "false"
-      - key: WEB_CONCURRENCY
-        value: "2"
       - key: RAILS_LOG_TO_STDOUT
         value: "true"
