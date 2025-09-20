@@ -1,3 +1,5 @@
+.PHONY: install lint test
+
 install:
 	bundle install
 migrate:
@@ -8,3 +10,5 @@ lint:
 	bundle exec rubocop -A
 slim:
 	slim-lint app/views/
+test:
+	bin/rails test
