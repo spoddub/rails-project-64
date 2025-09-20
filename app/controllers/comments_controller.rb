@@ -3,12 +3,14 @@ class CommentsController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
-    @comment = post.post_comments.build(comment_params.merge(user: current_user))
+    comment = post.post_comments.build(comment_params.merge(user: current_user))
 
-    if @comment.save
+    comment.parent_id ||= params[:parent_id].presence
+
+    if comment.save
       redirect_to post_path(post), notice: "Комментарий добавлен"
     else
-      redirect_to post_path(post), alert: @comment.errors.full_messages.to_sentence
+      redirect_to post_path(post), alert: comment.errors.full_messages.to_sentence
     end
   end
 
