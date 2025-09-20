@@ -12,9 +12,10 @@
 
 ActiveRecord::Schema[7.2].define(version: 2025_09_20_231528) do
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -30,13 +31,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_20_231528) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
+    t.string "title", null: false
+    t.text "body", null: false
     t.integer "category_id", null: false
+    t.integer "creator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "creator_id", null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["created_at"], name: "index_posts_on_created_at"
     t.index ["creator_id"], name: "index_posts_on_creator_id"
   end
 
