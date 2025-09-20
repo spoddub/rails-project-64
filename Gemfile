@@ -55,3 +55,4 @@ group :production do
   gem "sentry-ruby"
 end
 gem "devise"
+gem "simple_form"
