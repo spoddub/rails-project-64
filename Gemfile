@@ -56,3 +56,5 @@ group :production do
 end
 gem "devise"
 gem "simple_form"
+
+gem "ancestry", "~> 4.3"
