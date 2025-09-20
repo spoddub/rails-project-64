@@ -11,6 +11,18 @@
           p.text-muted.mb-2
             | Категория:
             = @post.category.name
+
+          / Лайки: кнопка + счётчик
+          .mb-3
+            - if user_signed_in?
+              - if current_user.post_likes.exists?(post: @post)
+                = button_to "Убрать лайк", post_like_path(@post), method: :delete, class: "btn btn-outline-danger btn-sm me-2"
+              - else
+                = button_to "Лайк", post_like_path(@post), method: :post, class: "btn btn-outline-primary btn-sm me-2"
+            span.text-muted
+              | Лайков:
+              = " #{@post.post_likes.count}"
+
           .mt-3
             = simple_format(@post.body)
 
