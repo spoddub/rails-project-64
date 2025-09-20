@@ -6,4 +6,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :posts, foreign_key: :creator_id, inverse_of: :creator, dependent: :nullify
+  has_man :post_comments, dependent: :destroy
 end
