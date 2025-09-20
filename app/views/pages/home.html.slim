@@ -1,14 +1,21 @@
-.container
-  .py-5
-    h1 Sticky footer with fixed navbar
-    p.lead
-      | Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
-      |  A fixed navbar has been added with
-      code padding-top: 60px
-      | ; on the
-      code main > .container
-      | .
-    p
-      | Back to the
-      = link_to "the default sticky footer", "#"
-      |  minus the navbar.
+.container.pt-5
+  h1 Посты
+
+  - if @posts.any?
+    .list-group
+      - @posts.each do |post|
+        .list-group-item
+          h5.mb-1 = post.title
+          small.text-muted
+            | Категория: #{post.category.name} •
+            |  Автор: #{post.creator.email} •
+            |  #{l(post.created_at, format: :short)}
+          p.mt-2 = simple_format(post.body)
+  - else
+    .alert.alert-secondary Пока постов нет.
+
+  hr.mt-4
+  - if user_signed_in?
+    = link_to "Создать пост", new_account_post_path, class: "btn btn-success"
+  - else
+    = link_to "Войти, чтобы создать пост", new_user_session_path, class: "btn btn-outline-primary"
