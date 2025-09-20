@@ -3,28 +3,34 @@ html
   head
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1"
-    title Коллективный блог
+    title Rails Project 64
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = javascript_include_tag "application", type: "module", "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", data: { turbo_track: "reload" }
+    = javascript_include_tag "application", type: "module", data: { turbo_track: "reload" }
   body
-    / Navigation with devise
+    / Навигация с Devise-ссылками
     nav.navbar.navbar-expand-md.navbar-light.bg-light.mb-3
       .container-fluid
-        span.navbar-brand Коллективный блог
+        span.navbar-brand Rails Project 64
         .ms-auto
+          ruby:
+            logout_btn = "btn btn-outline-secondary btn-sm me-2"
+            signin_btn = "btn btn-outline-primary btn-sm me-2"
+            signup_btn = "btn btn-primary btn-sm"
           - if user_signed_in?
-            = button_to "Выйти", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary btn-sm me-2"
+            = button_to "Выйти", destroy_user_session_path, method: :delete, class: logout_btn
             = link_to "Профиль", edit_user_registration_path, class: "btn btn-link btn-sm"
           - else
-            = link_to "Вход", new_user_session_path, class: "btn btn-outline-primary btn-sm me-2"
-            = link_to "Регистрация", new_user_registration_path, class: "btn btn-primary btn-sm"
+            = link_to "Вход", new_user_session_path, class: signin_btn
+            = link_to "Регистрация", new_user_registration_path, class: signup_btn
 
-    / Devise (notice/alert)
+    / Флеши Devise (notice/alert)
     - if notice
-      .alert.alert-success(role="alert") = notice
+      .alert.alert-success role="alert"
+        = notice
     - if alert
-      .alert.alert-danger(role="alert") = alert
+      .alert.alert-danger role="alert"
+        = alert
 
     = yield

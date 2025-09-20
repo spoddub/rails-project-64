@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 ruby file: ".ruby-version"
@@ -6,31 +8,29 @@ ruby file: ".ruby-version"
 gem "rails", "~> 7.2.2", ">= 7.2.2.2"
 
 # HTTP/web
+gem "bootsnap", require: false
+gem "cssbundling-rails"
+gem "jbuilder"
+gem "jsbundling-rails"
 gem "puma", ">= 5.0"
 gem "sprockets-rails"
-gem "jsbundling-rails"
-gem "cssbundling-rails"
-gem "turbo-rails"
 gem "stimulus-rails"
-gem "jbuilder"
+gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
-gem "bootsnap", require: false
-gem "sentry-ruby"
-gem "sentry-rails"
 
 # Slim
-gem "slim-rails"
 gem "slim"
+gem "slim-rails"
 
 group :development, :test do
   # database for dev/test
   gem "sqlite3", ">= 1.4"
 
   # checks
-  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "brakeman", require: false
-  gem "rubocop-rails-omakase", require: false
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "rubocop-rails", require: false
+  gem "rubocop-rails-omakase", require: false
   gem "slim_lint", require: false
 
   # test data
