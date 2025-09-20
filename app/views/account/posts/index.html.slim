@@ -1,0 +1,15 @@
+.container.pt-4
+  h1 Мои посты
+  = link_to "Новый пост", new_account_post_path, class: "btn btn-success btn-sm mb-3"
+
+  - if @posts.any?
+    .list-group
+      - @posts.each do |post|
+        .list-group-item
+          h5.mb-1 = post.title
+          small.text-muted
+            | Категория: #{post.category.name} •
+            |  Создан: #{l(post.created_at, format: :short)}
+          p.mt-2 = simple_format(post.body)
+  - else
+    .alert.alert-info Постов пока нет.
