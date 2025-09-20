@@ -1,0 +1,28 @@
+/ Параметры: post:, nodes: (hash от arrange)
+- nodes.each do |node, children|
+  - comment = node
+  .mb-3 id=dom_id(comment)
+    .border.rounded.p-3
+      .d-flex.justify-content-between.align-items-start.mb-2
+        .fw-semibold = comment.user.email
+        small.text-muted
+          = l(comment.created_at, format: :short) rescue comment.created_at.to_s
+
+      .mb-2 = simple_format(comment.content)
+
+      - if user_signed_in?
+        - dom = "reply-#{comment.id}"
+        a.link-secondary.small(
+          data-bs-toggle="collapse"
+          href="##{dom}"
+          role="button"
+          aria-expanded="false"
+          aria-controls=dom
+        )
+          | Ответить
+        .collapse.mt-2 id=dom
+          = render "comments/form", post: post, parent: comment, comment: PostComment.new
+
+    - if children.present?
+      .ms-4
+        = render "comments/tree", post: post, nodes: children

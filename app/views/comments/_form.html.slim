@@ -1,0 +1,21 @@
+/ Параметры: post:, parent: (PostComment или nil), comment: (PostComment)
+= form_with model: (comment || PostComment.new), url: post_comments_path(post), local: true do |f|
+  - if parent
+    = hidden_field_tag :parent_id, parent.id
+
+  .mb-3
+    = f.label :content, "Комментарий", class: "form-label"
+    = f.text_area :content, rows: 3, class: "form-control", required: true
+
+  .d-flex.gap-2
+    = f.submit "Отправить", class: "btn btn-primary btn-sm"
+    - if parent
+      - dom = "reply-#{parent.id}"
+      a.btn.btn-outline-secondary.btn-sm(
+        data-bs-toggle="collapse"
+        href="##{dom}"
+        role="button"
+        aria-expanded="true"
+        aria-controls="#{dom}"
+      )
+        | Отмена
