@@ -16,6 +16,6 @@
 
   hr.mt-4
   - if user_signed_in?
-    = link_to "Создать пост", new_account_post_path, class: "btn btn-success"
+    = link_to 'Создать пост', new_account_post_path, class: 'btn btn-success'
   - else
-    = link_to "Войти, чтобы создать пост", new_user_session_path, class: "btn btn-outline-primary"
+    = link_to 'Войти, чтобы создать пост', new_user_session_path, class: 'btn btn-outline-primary'

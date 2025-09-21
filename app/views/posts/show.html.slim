@@ -16,18 +16,18 @@
           .mb-3
             - if user_signed_in?
               - if current_user.post_likes.exists?(post: @post)
-                = button_to "Убрать лайк",
+                = button_to 'Убрать лайк',
                             post_like_path(@post),
                             method: :delete,
-                            class: "btn btn-outline-danger btn-sm me-2"
+                            class: 'btn btn-outline-danger btn-sm me-2'
               - else
-                = button_to "Лайк",
+                = button_to 'Лайк',
                             post_like_path(@post),
                             method: :post,
-                            class: "btn btn-outline-primary btn-sm me-2"
+                            class: 'btn btn-outline-primary btn-sm me-2'
             span.text-muted
               | Лайков:
-              = " #{@post.post_likes.count}"
+              = @post.post_likes.count
 
           .mt-3
             = simple_format(@post.body)
@@ -38,17 +38,17 @@
           h2.h5.mb-3 Комментарии
 
           - if user_signed_in?
-            = render "comments/form", post: @post, parent: nil, comment: @comment
+            = render 'comments/form', post: @post, parent: nil, comment: @comment
           - else
             .alert.alert-info
               | Чтобы оставить комментарий,
-              = link_to "войдите", new_user_session_path
+              = link_to 'войдите', new_user_session_path
               |  или
-              = link_to "зарегистрируйтесь", new_user_registration_path
+              = link_to 'зарегистрируйтесь', new_user_registration_path
               | .
 
       / Дерево комментариев
       - if @post.post_comments.exists?
-        = render "comments/tree", post: @post, nodes: @post.post_comments.arrange(order: :created_at)
+        = render 'comments/tree', post: @post, nodes: @post.post_comments.arrange(order: :created_at)
       - else
         p.text-muted Пока нет комментариев.
