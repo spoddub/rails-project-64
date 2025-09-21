@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class PostCommentTest < ActiveSupport::TestCase
@@ -13,7 +15,7 @@ class PostCommentTest < ActiveSupport::TestCase
     assert { child.save }
 
     assert { child.parent == root }
-    assert { root.children.count == 1 }
+    assert { root.children.one? }
     assert { child.ancestry.start_with?('/') }
   end
 end

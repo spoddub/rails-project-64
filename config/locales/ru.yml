@@ -1,0 +1,9 @@
+ru:
+  flash:
+    posts:
+      created: "Пост создан"
+    comments:
+      created: "Комментарий добавлен"
+    likes:
+      created: "Пост понравился"
+      destroyed: "Лайк удалён"

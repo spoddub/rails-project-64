@@ -1,25 +1,23 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    post = Post.find(params[:post_id])
-
-    comment = post.post_comments.build(
-      comment_params.merge(user: current_user)
-    )
-
-    comment.parent_id ||= params[:parent_id].presence
-
-    if comment.save
-      redirect_to post_path(post), notice: 'Комментарий добавлен'
-    else
-      redirect_to post_path(post), alert: comment.errors.full_messages.to_sentence
-    end
+    comment = build_comment
+    comment.save!
+    redirect_to post_path(comment.post), notice: t('flash.comments.created')
   end
 
   private
 
-  def comment_params
-    params.require(:post_comment).permit(:content, :parent_id)
+  def build_comment
+    post   = Post.find(params[:post_id])
+    parent = post.comments.find_by(id: params[:parent_id])
+    post.comments.new(
+      content: params.require(:comment)[:content],
+      user: current_user,
+      parent: parent
+    )
   end
 end

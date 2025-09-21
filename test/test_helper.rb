@@ -4,10 +4,14 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 
-class ActiveSupport::TestCase
-  parallelize(workers: :number_of_processors)
+module ActiveSupport
+  class TestCase
+    parallelize(workers: :number_of_processors)
+  end
 end
 
-class ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
+module ActionDispatch
+  class IntegrationTest
+    include Devise::Test::IntegrationHelpers
+  end
 end

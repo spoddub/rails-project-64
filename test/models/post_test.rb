@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
@@ -7,7 +9,7 @@ class PostTest < ActiveSupport::TestCase
 
     post = Post.new(
       title: 'Title',
-      body:  'Body',
+      body: 'Body',
       category: category,
       creator: user
     )

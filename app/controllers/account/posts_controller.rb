@@ -1,27 +1,31 @@
-class Account::PostsController < ApplicationController
-  before_action :authenticate_user!
+# frozen_string_literal: true
 
-  def index
-    @posts = Post.where(creator: current_user).order(created_at: :desc)
-  end
+module Account
+  class PostsController < ApplicationController
+    before_action :authenticate_user!
 
-  def new
-    @post = Post.new
-  end
-
-  def create
-    @post = Post.new(post_params.merge(creator: current_user))
-
-    if @post.save
-      redirect_to post_path(@post), notice: 'Пост создан'
-    else
-      render :new, status: :unprocessable_entity
+    def index
+      @posts = Post.where(creator: current_user).order(created_at: :desc)
     end
-  end
 
-  private
+    def new
+      @post = Post.new
+    end
 
-  def post_params
-    params.require(:post).permit(:title, :body, :category_id)
+    def create
+      @post = Post.new(post_params.merge(creator: current_user))
+
+      if @post.save
+        redirect_to post_path(@post), notice: t('flash.posts.created')
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
+    private
+
+    def post_params
+      params.require(:post).permit(:title, :body, :category_id)
+    end
   end
 end

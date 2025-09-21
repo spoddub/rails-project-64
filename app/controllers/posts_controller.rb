@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
 
@@ -17,7 +19,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params.merge(creator: current_user))
 
     if @post.save
-      redirect_to post_path(@post), notice: 'Пост создан'
+      redirect_to post_path(@post), notice: t('flash.posts.created')
     else
       render :new, status: :unprocessable_entity
     end

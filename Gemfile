@@ -53,6 +53,6 @@ group :production do
   gem 'sentry-ruby'
 end
 
+gem 'ancestry', '~> 4.3'
 gem 'devise'
 gem 'simple_form'
-gem 'ancestry', '~> 4.3'
