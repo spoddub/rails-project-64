@@ -1,0 +1,7 @@
+{
+  "[ruby]": {
+    "editor.defaultFormatter": "misogi.ruby-rubocop",
+    "editor.formatOnSave": true
+  },
+  "ruby.rubocop.useBundler": true
+}

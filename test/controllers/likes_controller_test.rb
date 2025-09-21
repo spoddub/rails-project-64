@@ -1,13 +1,13 @@
-require "test_helper"
+require 'test_helper'
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user     = User.create!(email: "u@example.com", password: "secret123")
-    @category = Category.create!(name: "Tech")
-    @post     = Post.create!(title: "Title", body: "Body", category: @category, creator: @user)
+    @user     = User.create!(email: 'u@example.com', password: 'secret123')
+    @category = Category.create!(name: 'Tech')
+    @post     = Post.create!(title: 'Title', body: 'Body', category: @category, creator: @user)
   end
 
-  test "POST /posts/:post_id/like creates like" do
+  test 'POST /posts/:post_id/like creates like' do
     sign_in @user
     assert_difference -> { PostLike.count }, +1 do
       post post_likes_path(@post)
@@ -15,7 +15,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to post_path(@post)
   end
 
-  test "POST /posts/:post_id/like does not duplicate" do
+  test 'POST /posts/:post_id/like does not duplicate' do
     sign_in @user
     @post.post_likes.create!(user: @user)
 
@@ -25,7 +25,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to post_path(@post)
   end
 
-  test "DELETE /posts/:post_id/like removes like" do
+  test 'DELETE /posts/:post_id/like removes like' do
     sign_in @user
     @post.post_likes.create!(user: @user)
 
@@ -35,7 +35,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to post_path(@post)
   end
 
-  test "requires auth" do
+  test 'requires auth' do
     post post_likes_path(@post)
     assert_response :redirect
   end

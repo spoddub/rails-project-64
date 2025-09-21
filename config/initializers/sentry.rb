@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-dsn = ENV["SENTRY_DSN"].to_s
-if dsn != ""
+dsn = ENV['SENTRY_DSN'].to_s
+if dsn != ''
   Sentry.init do |config|
     config.dsn = dsn
     config.enabled_environments = %w[production]

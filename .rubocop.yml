@@ -11,7 +11,7 @@ AllCops:
     - "node_modules/**/*"
 
 Style/StringLiterals:
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
 
 Rails/I18nLocaleTexts:
   Enabled: false

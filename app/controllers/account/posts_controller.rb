@@ -13,7 +13,7 @@ class Account::PostsController < ApplicationController
     @post = Post.new(post_params.merge(creator: current_user))
 
     if @post.save
-      redirect_to post_path(@post), notice: "Пост создан"
+      redirect_to post_path(@post), notice: 'Пост создан'
     else
       render :new, status: :unprocessable_entity
     end
