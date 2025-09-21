@@ -48,7 +48,6 @@ bin/rails s
 # Open http://localhost:3000
 ```
 
-````markdown
 ## Core entities
 
 - `Category` — `name` (unique), `has_many :posts`
@@ -70,9 +69,7 @@ namespace :account do
   resources :posts, only: %i[index new create]
 end
 ```
-````
 
-````markdown
 ## Usage
 
 1. Sign up or sign in.
@@ -93,9 +90,7 @@ make test
 bin/rails test test/controllers/comments_controller_test.rb
 bin/rails test test/controllers/comments_controller_test.rb -n "/creates_child_comment/"
 ```
-````
 
-```markdown
 ## Deploy on Render
 
 - Build runs `./bin/render-build.sh`
@@ -116,4 +111,3 @@ bin/rails test test/controllers/comments_controller_test.rb -n "/creates_child_c
 | Minitest              | Testing                          |
 | RuboCop, slim-lint    | Linting                          |
 | Render                | Production hosting               |
-```
