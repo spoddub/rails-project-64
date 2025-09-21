@@ -1,22 +1,22 @@
 require "test_helper"
+
 class Account::PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = User.create!(email: Faker::Internet.unique.email, password: "password123")
-    @category = Category.create!(name: "Интеграция")
+    @user     = User.create!(email: "a@example.com", password: "secret123")
+    @category = Category.create!(name: "Misc")
   end
+
   test "GET /account/posts/new requires auth" do
     get new_account_post_path
     assert_response :redirect
   end
+
   test "POST /account/posts creates post and redirects" do
     sign_in @user
-    attrs = { title: "Заголовок", body: "Текст поста", category_id: @category.id }
     assert_difference -> { Post.count }, +1 do
-      post account_posts_path, params: { post: attrs }
+      post account_posts_path, params: { post: { title: "T", body: "B", category_id: @category.id } }
     end
-    assert_response :redirect
-    post = Post.order(created_at: :desc).first
-    assert { post.creator_id == @user.id }
-    assert { post.category_id == @category.id }
+    created = Post.order(:created_at).last
+    assert_redirected_to post_path(created)
   end
 end

@@ -1,18 +1,22 @@
 Rails.application.routes.draw do
-  root "pages#home"
+  # Healthcheck
+  get "/up", to: "rails/health#show", as: :rails_health_check
+
+  # Devise
   devise_for :users
 
-  resources :posts, only: [ :show ] do
-    resource  :like,     only: [ :create, :destroy ], controller: "likes"
-    resources :comments, only: [ :create ],           controller: "comments"
+  root "pages#home"
+
+  resources :posts, only: %i[new create show] do
+    resources :comments, only: %i[create], controller: "comments"
+
+    resource :like, only: %i[create destroy], controller: "likes"
+
+    post   "likes", to: "likes#create",   as: :likes
+    delete "likes", to: "likes#destroy"
   end
 
-
-  post "/posts/:post_id/likes", to: "likes#create", as: :post_likes
-
-  get "up" => "rails/health#show", as: :rails_health_check
-
   namespace :account do
-    resources :posts, only: [ :index, :new, :create ]
+    resources :posts, only: %i[index new create]
   end
 end

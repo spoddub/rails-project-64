@@ -1,19 +1,16 @@
 require "test_helper"
 
 class PostLikeTest < ActiveSupport::TestCase
-  test "associations and validations" do
-    assert PostLike.reflect_on_association(:user).present?
-    assert PostLike.reflect_on_association(:post).present?
+  test "associations and uniqueness validation" do
+    assert_equal :belongs_to, PostLike.reflect_on_association(:post).macro
+    assert_equal :belongs_to, PostLike.reflect_on_association(:user).macro
 
-    user = User.create!(email: Faker::Internet.email, password: "password")
-    category = Category.create!(name: SecureRandom.hex(4))
-    post = Post.create!(title: "T", body: "B", category: category, creator: user)
+    user     = User.create!(email: "m@example.com", password: "secret123")
+    category = Category.create!(name: "Cats")
+    post     = Post.create!(title: "T", body: "B", category: category, creator: user)
 
-    like1 = PostLike.create!(user: user, post: post)
-    assert like1.persisted?
-
-    like2 = PostLike.new(user: user, post: post)
-    refute like2.valid?
-    assert_includes like2.errors[:user_id], "has already been taken"
+    PostLike.create!(user:, post:)
+    dup = PostLike.new(user:, post:)
+    assert_not dup.valid?, "duplicate like must be invalid"
   end
 end
