@@ -1,0 +1,18 @@
+- content_for :page_title, "Новый пост"
+
+.container
+  .row
+    .col-lg-8.mx-auto
+      .card
+        .card-body
+          h1.h4.mb-3 Новый пост
+
+          = simple_form_for @post do |f|
+            = f.input :title
+            = f.input :body, as: :text, input_html: { rows: 8 }
+            = f.input :category_id, as: :select,
+                      collection: Category.order(:name),
+                      label_method: :name, value_method: :id,
+                      prompt: "Выберите категорию"
+            .mt-3
+              = f.button :submit, "Создать", class: "btn btn-primary"
