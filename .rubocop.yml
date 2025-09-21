@@ -2,25 +2,32 @@ inherit_gem:
   rubocop-rails-omakase: rubocop.yml
 
 AllCops:
-  NewCops: enable
+  TargetRubyVersion: 3.2
+  NewCops: disable
   Exclude:
-    - "bin/**/*"
     - "db/schema.rb"
-    - "node_modules/**/*"
     - "vendor/**/*"
+    - "bin/**/*"
+    - "node_modules/**/*"
 
-Metrics/BlockLength:
-  Exclude:
-    - "config/environments/*.rb"
-    - "config/initializers/**/*.rb"
-    - "config/routes.rb"
-    - "lib/tasks/**/*.rake"
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
 
-Layout/LineLength:
-  Max: 120
-  AllowHeredoc: true
-  AllowURI: true
-  AllowedPatterns:
-    - '^\s*#'
-  Exclude:
-    - "config/initializers/devise.rb"
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Layout/HashAlignment:
+  Enabled: false
+Layout/EmptyLines:
+  Enabled: false
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Lambda:
+  Enabled: false
+Lint/UnusedBlockArgument:
+  Enabled: false
+Bundler/OrderedGems:
+  Enabled: false
