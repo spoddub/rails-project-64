@@ -3,7 +3,11 @@ class CommentsController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
-    comment = post.post_comments.build(comment_params.merge(user: current_user))
+
+    comment = post.post_comments.build(
+      comment_params.merge(user: current_user)
+    )
+
     comment.parent_id ||= params[:parent_id].presence
 
     if comment.save
