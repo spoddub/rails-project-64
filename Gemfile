@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
-
-ruby file: ".ruby-version"
+ruby "3.2.2"
 
 # Rails
 gem "rails", "~> 7.2.2", ">= 7.2.2.2"
@@ -19,7 +18,6 @@ gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Slim
-gem "slim"
 gem "slim-rails"
 
 group :development, :test do
@@ -54,7 +52,7 @@ group :production do
   gem "sentry-rails"
   gem "sentry-ruby"
 end
+
 gem "devise"
 gem "simple_form"
-
 gem "ancestry", "~> 4.3"
