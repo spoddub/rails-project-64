@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   root "pages#home"
   devise_for :users
   resources :posts, only: [ :show ] do
-    resource :like, only: %i[create destroy], controller: "likes"
+    resource :post_like, only: [ :create, :destroy ],
+                         controller: "likes",
+                         as: :like,
+                         path: "like"
     resources :comments, only: [ :create ], controller: "comments"
   end
   # Healthcheck

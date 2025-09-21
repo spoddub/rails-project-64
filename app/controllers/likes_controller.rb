@@ -3,19 +3,15 @@ class LikesController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
-    like = post.post_likes.find_or_initialize_by(user: current_user)
-
-    if like.persisted? || like.save
-      redirect_to post_path(post), notice: "Лайк поставлен"
-    else
-      redirect_to post_path(post), alert: like.errors.full_messages.to_sentence
-    end
+    current_user.post_likes.find_or_create_by!(post: post)
+    redirect_to post_path(post), notice: "Пост понравился"
+  rescue ActiveRecord::RecordInvalid => e
+    redirect_to post_path(post), alert: e.record.errors.full_messages.to_sentence
   end
 
   def destroy
     post = Post.find(params[:post_id])
-    like = post.post_likes.find_by(user: current_user)
-    like&.destroy
-    redirect_to post_path(post), notice: "Лайк убран"
+    current_user.post_likes.where(post: post).destroy_all
+    redirect_to post_path(post), notice: "Лайк удалён"
   end
 end
