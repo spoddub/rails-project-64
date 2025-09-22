@@ -19,7 +19,10 @@
           aria-controls = dom
         ) Ответить
         .collapse.mt-2 id = dom
-          = render 'comments/form', post: post, parent: comment, comment: PostComment.new
+          = render 'comments/form',
+            post: post,
+            parent: comment,
+            comment: PostComment.new
 
     - if children.present?
       .ms-4

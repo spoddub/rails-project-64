@@ -9,6 +9,6 @@ server:
 lint:
 	bundle exec rubocop -A
 slim:
-	slim-lint app/views/
+	bundle exec slim-lint --config ./.slim-lint.yml app/views/
 test:
 	bin/rails test

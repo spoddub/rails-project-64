@@ -38,7 +38,10 @@
           h2.h5.mb-3 Комментарии
 
           - if user_signed_in?
-            = render 'comments/form', post: @post, parent: nil, comment: @comment
+            = render 'comments/form',
+              post: @post,
+              parent: nil,
+              comment: @comment
           - else
             .alert.alert-info
               | Чтобы оставить комментарий,
@@ -49,6 +52,7 @@
 
       / Дерево комментариев
       - if @post.post_comments.exists?
-        = render 'comments/tree', post: @post, nodes: @post.post_comments.arrange(order: :created_at)
+        = render 'comments/tree', post: @post,
+          nodes: @post.post_comments.arrange(order: :created_at)
       - else
         p.text-muted Пока нет комментариев.
