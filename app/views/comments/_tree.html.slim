@@ -5,12 +5,7 @@
     .border.rounded.p-3
       .d-flex.justify-content-between.align-items-start.mb-2
         .fw-semibold= comment.user.email
-        small.text-muted
-          - begin
-            = l(comment.created_at, format: :short)
-          - rescue StandardError
-            = comment.created_at.to_s
-          - end
+        small.text-muted= safe_l(comment.created_at, format: :short)
 
       .mb-2= simple_format(comment.content)
 
@@ -22,8 +17,7 @@
           role='button'
           aria-expanded='false'
           aria-controls=dom
-        )
-          | Ответить
+        ) Ответить
         .collapse.mt-2 id=dom
           = render 'comments/form', post: post, parent: comment, comment: PostComment.new
 

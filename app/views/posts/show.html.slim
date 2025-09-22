@@ -27,7 +27,7 @@
                             class: 'btn btn-outline-primary btn-sm me-2'
             span.text-muted
               | Лайков:
-              = @post.post_likes.count
+              = " #{@post.post_likes.count}"
 
           .mt-3
             = simple_format(@post.body)
