@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '3.2.2'
 
 # Rails
-gem 'rails', '~> 7.2.2', '>= 7.2.2.2'
+gem 'rails', '~> 8.0.3'
 
 # HTTP/web
 gem 'bootsnap', require: false
